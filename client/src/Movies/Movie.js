@@ -4,43 +4,15 @@ import { useRouteMatch, useParams } from 'react-router-dom';
 
 const Movie = (props) => {
 
-  const [movie, setMovie] = useState();
+  console.log('Movie props: ', props)
 
   const params = useParams()
   console.log('Movie PARAMS: ', params)
-  console.log('Movie PROPS: ', props)
 
-
+  const routeMatch = useRouteMatch()
+  console.log('ROUTE: ', routeMatch)
   
- 
-  const getMovie = () => {
-
-      const id = params.id
-
-
-    // change ^^^ that line and grab the id from the URL
-    // You will NEED to add a dependency array to this effect hook
-
-       axios
-        .get(`http://localhost:5000/api/movies/${id}`)
-        .then(response => {
-          setMovie('MOVIE: ', response.data);
-        })
-        .catch(error => {
-          console.error('ERROR: ', error);
-        });
-
-  }
-
-  useEffect(getMovie, [params.id])
-  
-
-
-  // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = evt => {
-  // }
-
-
+  const movie = props.movies.find(movie => movie.id === Number(params.id))
 
 
   if (!movie) {
@@ -50,7 +22,7 @@ const Movie = (props) => {
 
 
 
-  const { title, director, metascore, stars } = movie;
+  const { title, director, metascore } = movie;
 
 
 
@@ -60,21 +32,13 @@ const Movie = (props) => {
     <div className="save-wrapper">
       <div className="movie-card">
         <h2>{title}</h2>
-        {/* <div className="movie-director">
+        <div className="movie-director">
           Director: <em>{director}</em>
         </div>
         <div className="movie-metascore">
           Metascore: <strong>{metascore}</strong>
         </div>
-        <h3>Actors</h3>
-
-        {stars.map(star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ))} */}
       </div>
-      <div className="save-button">Save</div>
     </div>
   );
 }
