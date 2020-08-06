@@ -15,7 +15,6 @@ const App = () => {
       axios
         .get('http://localhost:5000/api/movies')
         .then(response => {
-          console.log('RESPONSE: ', response)
           setMovieList(response.data);
         })
         .catch(error => {
@@ -33,7 +32,6 @@ const App = () => {
 
   return (
 
-    
       <div>
         <SavedList list={[ /* This is stretch */]} />
         <Switch>

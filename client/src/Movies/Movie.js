@@ -4,7 +4,7 @@ import { useRouteMatch, useParams } from 'react-router-dom';
 
 const Movie = (props) => {
 
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState();
 
   const params = useParams()
   console.log('Movie PARAMS: ', params)
@@ -17,7 +17,6 @@ const Movie = (props) => {
 
       const id = params.id
 
-      console.log('ID: ', id)
 
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
